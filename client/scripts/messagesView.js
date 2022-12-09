@@ -8,6 +8,9 @@ var MessagesView = {
   initialize: function() {
     // TODO: Perform any work which needs to be done
     // when this view loads.
+    $(document).on("click", ".username", function(event) {
+      MessagesView.handleClick(event);
+    });
   },
 
   render: function() {
@@ -15,12 +18,17 @@ var MessagesView = {
   },
 
   renderMessage: function(message) {
-    // TODO: Render a single message.
+    this.$chats.append(MessageView.render(message));
   },
 
   handleClick: function(event) {
+    Friends.addFriend(event.target.textContent);
+    // Friends.toggleStatus(event.target.textContent);
+    // Friends._data.push(event.target.textContent);
+    // console.log(Friends._data);
     // TODO: handle a user clicking on a message
     // (this should add the sender to the user's friend list).
   }
+
 
 };
