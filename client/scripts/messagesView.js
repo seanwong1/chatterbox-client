@@ -14,7 +14,7 @@ var MessagesView = {
   },
 
   render: function() {
-    // TODO: Render _all_ the messages.
+    //Messages.addMessage
   },
 
   renderMessage: function(message) {
