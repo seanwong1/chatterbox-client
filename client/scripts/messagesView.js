@@ -21,9 +21,14 @@ var MessagesView = {
   },
 
   renderMessage: function(index) {
-    console.log(Rooms.getSelectedRoom());
+
     if (Messages.getMessage(index)['roomname'] === Rooms.getSelectedRoom()) {
-      this.$chats.append(MessageView.render(Messages.getMessage(index)));
+      if (Friends.getFriendStatus(Messages.getMessage(index)['username'])) {
+        this.$chats.append(MessageView.render(Messages.getMessage(index)));
+        $(`div:contains(${Messages.getMessage(index)['username']})`).css({'background-color': 'red'});
+      } else {
+        this.$chats.append(MessageView.render(Messages.getMessage(index)));
+      }
     }
 
   },

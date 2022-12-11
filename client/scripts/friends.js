@@ -11,14 +11,20 @@ var Friends = {
     if (!this._data[username]) {
       this._data[username] = true;
     } else {
-      this.data[username] = false;
+      this._data[username] = false;
     }
   },
 
   addFriend: function(username) {
     if (!this._data[username]) {
       this.toggleStatus(username);
+    } else {
+      this.toggleStatus(username);
     }
+  },
+
+  getFriendStatus: function(username) {
+    return (username in this._data) && this._data[username];
   }
   // TODO: Define methods which allow you to add, toggle,
   // and check the friendship status of other users.
