@@ -10,6 +10,7 @@ var Rooms = {
 
   add: function(roomname) {
     if (!this._data[roomname]) {
+      this.selectRoom(roomname);
       this._data[roomname] = 'unselected';
     }
   },

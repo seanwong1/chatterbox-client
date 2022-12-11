@@ -8,6 +8,7 @@ var RoomsView = {
 
   initialize: function() {
     this.$button.on("click", function(event) {
+      // var roomname = prompt('Name of new room', 'default_lobby');
       RoomsView.handleClick(event);
     });
 
@@ -27,7 +28,6 @@ var RoomsView = {
   },
 
   renderRoom: function(roomname) {
-
     this.$select.append($('<option>', {value:roomname, text: roomname}));
   },
 
@@ -38,7 +38,8 @@ var RoomsView = {
   },
 
   handleClick: function(event) {
-    Rooms.add(event);
+    var roomname = prompt('Name of new room', 'default_lobby');
+    Rooms.add(roomname);
     // TODO: Handle the user clicking the "Add Room" button.
   }
 
