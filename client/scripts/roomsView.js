@@ -10,26 +10,36 @@ var RoomsView = {
     this.$button.on("click", function(event) {
       RoomsView.handleClick(event);
     });
+
+    this.$select.change(function() {
+      var selected = $('#selects option:selected').val();
+      RoomsView.handleChange(selected);
+    }
+      // RoomsView.handleChange(selected);
+    );
   },
 
   render: function() {
-    // TODO: Render out the list of rooms.
+    this.$select.empty();
+    for (var room in Rooms._data) {
+      this.renderRoom(room);
+    }
   },
 
   renderRoom: function(roomname) {
-    var option = document.createElement('option');
-    option.text = roomname;
-    this.$select.append(option);
+
+    this.$select.append($('<option>', {value:roomname, text: roomname}));
   },
 
   handleChange: function(event) {
-    // TODO: Handle a user selecting a different room.
+    Rooms.selectRoom(event);
+    Messages.clearMessages();
+    App.fetch();
   },
 
   handleClick: function(event) {
     Rooms.add(event);
     // TODO: Handle the user clicking the "Add Room" button.
-    console.log(event);
   }
 
 };

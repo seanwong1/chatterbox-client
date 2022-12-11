@@ -14,21 +14,26 @@ var MessagesView = {
   },
 
   render: function() {
-    //Messages.addMessage
+    this.$chats.empty();
+    for (var i = 0; i < Messages.getLength(); i++) {
+      this.renderMessage(i);
+    }
   },
 
-  renderMessage: function(message) {
-    this.$chats.append(MessageView.render(message));
+  renderMessage: function(index) {
+    console.log(Rooms.getSelectedRoom());
+    if (Messages.getMessage(index)['roomname'] === Rooms.getSelectedRoom()) {
+      this.$chats.append(MessageView.render(Messages.getMessage(index)));
+    }
+
   },
 
   handleClick: function(event) {
     Friends.addFriend(event.target.textContent);
     // Friends.toggleStatus(event.target.textContent);
     // Friends._data.push(event.target.textContent);
-    // console.log(Friends._data);
     // TODO: handle a user clicking on a message
     // (this should add the sender to the user's friend list).
   }
-
 
 };
